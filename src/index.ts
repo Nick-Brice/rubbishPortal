@@ -69,7 +69,7 @@ server.tool(
 
     },
     async ({ stream_record_id }) => {
-        const apiURL = `http://localhost:3000/api/mcp/stats/streams/${stream_record_id}`;
+        const apiURL = `https://rubbishportal.com/api/mcp/stats/streams/${stream_record_id}`;
         const apiData = await makeAPIGetRequest<StreamStatsResponseObject>(apiURL);
 
         if (!apiData) {
@@ -121,7 +121,7 @@ server.tool(
 
     },
     async ({ product_record_id }) => {
-        const apiURL = `http://localhost:3000/api/mcp/stats/products/${product_record_id}`;
+        const apiURL = `https://rubbishportal.com/api/mcp/stats/products/${product_record_id}`;
         const apiData = await makeAPIGetRequest<ProductStatsResponseObject>(apiURL);
 
         if (!apiData) {
@@ -172,7 +172,7 @@ server.tool(
         stream_record_id: z.string().describe("Record ID of the stream"),
     },
     async ({ stream_record_id }) => {
-        const apiURL = `http://localhost:3000/api/mcp/records/streams/${stream_record_id}/products`;
+        const apiURL = `https://rubbishportal.com/api/mcp/records/streams/${stream_record_id}/products`;
         const apiData = await makeAPIGetRequest<VenueProductRecord[]>(apiURL);
 
         if (!apiData) {
@@ -224,7 +224,7 @@ server.tool(
         service_provider_name: z.string().describe("Name of the service provider"),
     },
     async ({ service_provider_name }) => {
-        const apiURL = `http://localhost:3000/api/mcp/records/service-providers/${service_provider_name}/venues`;
+        const apiURL = `https://rubbishportal.com/api/mcp/records/service-providers/${service_provider_name}/venues`;
         const apiData = await makeAPIGetRequest<VenueRecord[]>(apiURL);
 
         if (!apiData) {
@@ -277,7 +277,7 @@ server.tool(
 
     },
     async ({ venue_record_id }) => {
-        const apiURL = `http://localhost:3000/api/mcp/records/venues/${venue_record_id}/streams`;
+        const apiURL = `https://rubbishportal.com/api/mcp/records/venues/${venue_record_id}/streams`;
         const apiData = await makeAPIGetRequest<StreamRecordID[]>(apiURL);
 
         if (!apiData) {
