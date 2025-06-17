@@ -54,7 +54,7 @@ async function makeAPIGetRequest(url) {
 server.tool("get-stream-statistics", "Find general statistics for a single stream", {
     stream_record_id: z.string().describe("Record ID of the stream"),
 }, async ({ stream_record_id }) => {
-    const apiURL = `http://localhost:3000/api/mcp/stats/streams/${stream_record_id}`;
+    const apiURL = `https://rubbishportal.com/api/mcp/stats/streams/${stream_record_id}`;
     const apiData = await makeAPIGetRequest(apiURL);
     if (!apiData) {
         return {
@@ -90,7 +90,7 @@ server.tool("get-stream-statistics", "Find general statistics for a single strea
 server.tool("get-venue-product-statistics", "Find general statistics for a single venue product", {
     product_record_id: z.string().describe("Record ID of the venue product"),
 }, async ({ product_record_id }) => {
-    const apiURL = `http://localhost:3000/api/mcp/stats/products/${product_record_id}`;
+    const apiURL = `https://rubbishportal.com/api/mcp/stats/products/${product_record_id}`;
     const apiData = await makeAPIGetRequest(apiURL);
     if (!apiData) {
         return {
@@ -126,7 +126,7 @@ server.tool("get-venue-product-statistics", "Find general statistics for a singl
 server.tool("get-stream-venue-products", "Find all venue products for a specific stream", {
     stream_record_id: z.string().describe("Record ID of the stream"),
 }, async ({ stream_record_id }) => {
-    const apiURL = `http://localhost:3000/api/mcp/records/streams/${stream_record_id}/products`;
+    const apiURL = `https://rubbishportal.com/api/mcp/records/streams/${stream_record_id}/products`;
     const apiData = await makeAPIGetRequest(apiURL);
     if (!apiData) {
         return {
@@ -162,7 +162,7 @@ server.tool("get-stream-venue-products", "Find all venue products for a specific
 server.tool("get-service-provider-venues", "Find all venues for a specific service provider", {
     service_provider_name: z.string().describe("Name of the service provider"),
 }, async ({ service_provider_name }) => {
-    const apiURL = `http://localhost:3000/api/mcp/records/service-providers/${service_provider_name}/venues`;
+    const apiURL = `https://rubbishportal.com/api/mcp/records/service-providers/${service_provider_name}/venues`;
     const apiData = await makeAPIGetRequest(apiURL);
     if (!apiData) {
         return {
@@ -198,7 +198,7 @@ server.tool("get-service-provider-venues", "Find all venues for a specific servi
 server.tool("get-stream-ids", "Find all streams for a specific venue", {
     venue_record_id: z.string().describe("Record ID of the venue"),
 }, async ({ venue_record_id }) => {
-    const apiURL = `http://localhost:3000/api/mcp/records/venues/${venue_record_id}/streams`;
+    const apiURL = `https://rubbishportal.com/api/mcp/records/venues/${venue_record_id}/streams`;
     const apiData = await makeAPIGetRequest(apiURL);
     if (!apiData) {
         return {
