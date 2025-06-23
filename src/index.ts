@@ -264,7 +264,7 @@ server.tool(
     },
 );
 
-interface StreamRecordID {
+interface faqString {
     record_id: string;
     name: string;
 }
@@ -278,7 +278,7 @@ server.tool(
     },
     async ({ venue_record_id }) => {
         const apiURL = `https://rubbishportal.com/api/mcp/records/venues/${venue_record_id}/streams`;
-        const apiData = await makeAPIGetRequest<StreamRecordID[]>(apiURL);
+        const apiData = await makeAPIGetRequest<faqString[]>(apiURL);
 
         if (!apiData) {
             return {
@@ -305,6 +305,41 @@ server.tool(
         const formattedStreams = apiData?.map(stream => `Record ID: ${stream?.record_id}, Stream Name: ${stream?.name}`)?.join(",\n")
 
         const formattedResponse = `Stream record ids for ${venue_record_id}:\n ${formattedStreams}`;
+
+        return {
+            content: [
+                {
+                    type: "text",
+                    text: formattedResponse,
+                },
+            ],
+        };
+    },
+);
+
+server.tool(
+    "get-faqs",
+    "Find all FAQs for an array of topics",
+    {
+        topic_array: z.array(z.string().describe("Topic must be from this list ['zones', 'events', 'products', 'deliveries', 'stock checks', 'sales', 'returns', 'streams', 'collections', 'sorting', 'venue', 'user', 'utilities', 'transport']")),
+
+    },
+    async ({ topic_array }) => {
+        const apiURL = `https://rubbishportal.com/api/mcp/faqs?topics=${JSON.stringify(topic_array)}`;
+        const apiData = await makeAPIGetRequest<string>(apiURL);
+
+        if (!apiData) {
+            return {
+                content: [
+                    {
+                        type: "text",
+                        text: `Failed to get FAQs. Check API is still working.`,
+                    },
+                ],
+            };
+        }
+
+        const formattedResponse = `FAQs for ${JSON.stringify(topic_array)}:\n ${apiData}`;
 
         return {
             content: [
