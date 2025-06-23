@@ -231,6 +231,31 @@ server.tool("get-stream-ids", "Find all streams for a specific venue", {
         ],
     };
 });
+server.tool("get-faqs", "Find all FAQs for an array of topics", {
+    topic_array: z.array(z.string().describe("Topic must be from this list ['zones', 'events', 'products', 'deliveries', 'stock checks', 'sales', 'returns', 'streams', 'collections', 'sorting', 'venue', 'user', 'utilities', 'transport']")),
+}, async ({ topic_array }) => {
+    const apiURL = `https://rubbishportal.com/api/mcp/faqs?topics=${JSON.stringify(topic_array)}`;
+    const apiData = await makeAPIGetRequest(apiURL);
+    if (!apiData) {
+        return {
+            content: [
+                {
+                    type: "text",
+                    text: `Failed to get FAQs. Check API is still working.`,
+                },
+            ],
+        };
+    }
+    const formattedResponse = `FAQs for ${JSON.stringify(topic_array)}:\n ${apiData}`;
+    return {
+        content: [
+            {
+                type: "text",
+                text: formattedResponse,
+            },
+        ],
+    };
+});
 async function main() {
     const transport = new StdioServerTransport();
     await server.connect(transport);
