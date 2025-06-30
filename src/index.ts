@@ -61,6 +61,7 @@ interface StreamStatsResponseObject {
     weightCollected: number;
 }
 
+// get-stream-statistics
 server.tool(
     "get-stream-statistics",
     "Find general statistics for a single stream",
@@ -113,6 +114,7 @@ interface ProductStatsResponseObject {
     quantityCollected: number;
 }
 
+// get-venue-product-statistics
 server.tool(
     "get-venue-product-statistics",
     "Find general statistics for a single venue product",
@@ -165,6 +167,7 @@ interface VenueProductRecord {
     name: string;
 }
 
+// get-stream-venue-products
 server.tool(
     "get-stream-venue-products",
     "Find all venue products for a specific stream",
@@ -217,6 +220,7 @@ interface VenueRecord {
     name: string;
 }
 
+// get-service-provider-venues
 server.tool(
     "get-service-provider-venues",
     "Find all venues for a specific service provider",
@@ -269,6 +273,7 @@ interface faqString {
     name: string;
 }
 
+// get-stream-ids
 server.tool(
     "get-stream-ids",
     "Find all streams for a specific venue",
@@ -317,6 +322,7 @@ server.tool(
     },
 );
 
+// get-faqs
 server.tool(
     "get-faqs",
     "Find all FAQs for an array of topics",
